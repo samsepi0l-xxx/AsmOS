@@ -3,26 +3,22 @@
 
 jmp OSMain
 
-BackWidth db 0
-BackHeight db 0
-Pagination db 0
-Welcome db "Bem-vindo ao AsmOS",0
+; ---------------------------
+; Directives and Inclusions
+;
+;
+;
+; ---------------------------
+
+; Start System
 
 OSMain:
   call ConfigSegment
   call ConfigStack
-  call TEXT.SetVideoMode
-  call BackColor
-  jmp ShowString
 
-ShowString:
-  mov dh, 3
-  mov dl, 2
-  call MoveCursor
-  mov si, Welcome
-  call PrintString
-  jmp END
+; End Start System
 
+; Kernel Functions
 ConfigSegment:
   mov ax, es
   mov ds, ax
@@ -34,24 +30,9 @@ ConfigStack:
   mov sp, 03FEh
 ret
 
-TEXT.SetVideoMode:
-  mov ah, 00h
-  mov al, 03h
-  int 10h
-  mov BYTE[BackWidth], 80
-  mov BYTE[BackHeight], 20
-ret
-
-BackColor:
-  mov ah, 06h
-  mov al, 0
-  mov bh, 0001_1111b
-  mov ch, 0
-  mov cl, 0
-  mov dh, 5
-  mov dl, 80
-  int 10h
-ret
+END:
+  int 19h
+; End Kernel Functions
 
 PrintString:
   mov ah, 09h
@@ -76,5 +57,3 @@ MoveCursor:
   int 10h
 ret
 
-END:
-  int 19h
