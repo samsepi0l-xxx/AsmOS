@@ -85,10 +85,8 @@ Contribuições são bem-vindas! Para contribuir:
 5. Abra um **Pull Request**.
 
 ## 📞 Contato
-- Email: seuemail@example.com
-- Twitter: [@seuuser](https://twitter.com/seuuser)
-- Discord: SeuServidor#1234
+- Email: samsepi0Il@tutamail.com
 
 ---
-**AsmOS - Criando um SO do zero, um byte de cada vez!**
+**AsmOS - Criando do zero!**
 
