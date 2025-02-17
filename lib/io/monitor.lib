@@ -1,0 +1,44 @@
+; ========================
+; Created by samsepi0l
+; Version 1.0.0
+; ========================
+
+%IFNDEF __MONITOR_LIB__
+%DEFINE __MONITOR_LIB__
+
+;; Main Strings
+NameSystem db "AsmOS", 0
+
+
+;; Window Configurations
+BackWidth   dw 0000h
+BackHeight  dw 0000h
+BackColor   db 46
+Pagination  db 0
+CursorX     db 15
+CursorY     db 12
+State       db 0
+Key         db 0
+count       dw 0
+
+;; Routine Library
+; Definir o modo de video e configura posicao padrao
+VGA.SetVideoMode:
+  mov ah, 00h
+  mov al, 13h
+  int 10h
+  mov ax, 320
+  mov WORD[BackWidth], ax
+  mov ax, 200
+  mov WORD[BackHeight], ax
+  call DrawPixelConfig
+ret
+
+DrawPixelConfig:
+  mov ah, 0Ch
+  mov al, [BackColor]
+  mov cx, 0
+  mov dx, 0
+ret
+
+%ENDIF
